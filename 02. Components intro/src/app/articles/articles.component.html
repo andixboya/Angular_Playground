@@ -1,0 +1,7 @@
+<!-- this is passed on to the single-article component (as @Input decorator prop) -->
+<ul>
+    <app-article *ngFor="let a of articles"
+    [article]="a" 
+    [articleDesc]="a.description">
+    </app-article>
+</ul>
