@@ -7,7 +7,21 @@
 
 <h1>Movies in Theater</h1>
 <div class="row">
-  <div class="col-lg-2" *ngFor="let movie of theaters; let i = index">
+  <div class="col-lg-2" *ngFor="let movie of moviesInTheaters; let i = index">
+    <app-movie [movie]="movie" (onDetailsEmitter)="fromChild($event)"> </app-movie>
+  </div>
+</div>
+
+<h1>Popular Kids Movies</h1>
+<div class="row">
+  <div class="col-lg-2" *ngFor="let movie of popularKidsMovies; let i = index">
+    <app-movie [movie]="movie" (onDetailsEmitter)="fromChild($event)"> </app-movie>
+  </div>
+</div>
+
+<h1>Best Drama Movies</h1>
+<div class="row">
+  <div class="col-lg-2" *ngFor="let movie of bestDramaMovies; let i = index">
     <app-movie [movie]="movie" (onDetailsEmitter)="fromChild($event)"> </app-movie>
   </div>
 </div>
