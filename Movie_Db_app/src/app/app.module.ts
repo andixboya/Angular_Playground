@@ -4,30 +4,33 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MoviesComponent } from './components/movies/movies.component';
-import { HeadersComponent } from './components/headers/headers.component';
-import { FootersComponent } from './components/footers/footers.component';
-import { MovieComponent } from './components/movie/movie.component';
-import { LandingComponent } from './components/landing/landing.component';
-import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { MoviesModule } from './components/movie-related/movie.module';
+import { SharedModule } from './components/shared/shared-module';
+
+// import { HeadersComponent } from './components/shared/headers/headers.component';
+// import { FootersComponent } from './components/shared/footers/footers.component';
+// import { LandingComponent } from './components/shared/landing/landing.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesComponent,
-    HeadersComponent,
-    FootersComponent,
-    MovieComponent,
-    LandingComponent,
-    MovieDetailsComponent,
+    //all are exported in the module, which they belong, otherwise you`ll have ti import them directly here!
+    // HeadersComponent,
+    // FootersComponent,
+    // LandingComponent,
+    // MoviesComponent, these 3 are included in the app module, therefore we don`t need to import them or include them here!
+    // MovieComponent,
+    // MovieDetailsComponent,
   ],
 
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    BrowserModule,
+    HttpClientModule,
+    MoviesModule,
+    SharedModule
   ],
   //if the services are pointed in the injectable(), then it will work!!!
   providers: [],

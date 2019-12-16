@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import IMovie from 'src/app/models/IMovie';
 import { EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie',
@@ -9,7 +10,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class MovieComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   @Output()
   onDetailsEmitter: EventEmitter<number> = new EventEmitter<number>();
@@ -22,6 +23,9 @@ export class MovieComponent implements OnInit {
   }
 
   clickButton() {
-    this.onDetailsEmitter.emit(this.movie.id);
+    debugger;
+    this.router.navigate(['movies', `${this.movie.id}`])
+    //the below is unnecessary for now...
+    // this.onDetailsEmitter.emit(this.movie.id);
   }
 }
