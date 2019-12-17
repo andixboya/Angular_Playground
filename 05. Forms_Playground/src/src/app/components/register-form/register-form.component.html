@@ -1,0 +1,127 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <h1>Registration Form</h1>
+            <form #form="ngForm" (submit)="submitForm(form)">
+                <pre> {{form.value | json}}</pre>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input required minlength=3 maxlength=20 ngModel name="fullName" class="form-control"
+                        placeholder="Full Name">
+                </div>
+                <div class="validation-ids">
+                    <div class=" alert alert-danger"
+                        *ngIf="form?.controls?.fullName?.errors?.minlength && !form.controls.fullName.untouched">
+                        Fullname must be at least 3 symbols
+                    </div>
+                    <div class=" alert alert-danger"
+                        *ngIf="form?.controls?.fullName?.errors?.maxlength && !form.controls.fullName.untouched">
+                        Fullname must be at least 20 symbols
+                    </div>
+                    <div class=" alert alert-danger"
+                        *ngIf="form?.controls?.fullName?.errors?.required && !form.controls.fullName.untouched">
+                        Fullname is required!
+                    </div>
+                </div>
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input ngModel
+                        pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+                        name="email" class="form-control" placeholder="Email Address" type="email">
+                </div>
+                <div class=" alert alert-danger"
+                    *ngIf="form?.controls?.email?.errors?.pattern && !form.controls.email.untouched">
+                    Email is invalid!
+                </div>
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+
+
+                    <!-- <select class="custom-select" style="max-width: 120px;">
+                        <option ngModel name="prefix" [value]="prefix" *ngFor="let prefix of numbers">{{prefix}}
+                        </option>
+                    </select> -->
+                    <input ngModel name="phoneNumber" pattern='\d{9}' class="form-control" placeholder="Phone number"
+                        type="text">
+                </div>
+                <div class=" alert alert-danger"
+                    *ngIf="form?.controls?.phoneNumber?.errors && !form.controls.phoneNumber.untouched">
+                    Phone number must be exactly 9 digits!
+                </div>
+
+                <div ngModelGroup="passwordInfo">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input ngModel name="password" pattern='^.{9,}$' class="form-control"
+                            placeholder="Create password" type="password">
+                    </div>
+                    <div class=" alert alert-danger"
+                        *ngIf="form?.controls?.passwordInfo?.controls?.password?.errors && !form?.controls?.passwordInfo?.password?.untouched">
+                        Password must be at least 9 symbols
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input ngModel name="repeatPassword" required pattern="^[\w\W]{9,}$" class="form-control"
+                            placeholder="Repeat password" type="password">
+                    </div>
+                    <div class=" alert alert-danger"
+                        *ngIf="form.value?.passwordInfo?.password!= form.value?.passwordInfo?.repeatPassword">
+                        Confirm password is different from password!
+                    </div>
+                </div>
+
+
+
+                <!-- test directive -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input ngModel appUrlValidator name="url" class="form-control" placeholder="Url">
+                </div>
+                <div class="validation-ids">
+                    <div class=" alert alert-danger" *ngIf="form?.control?.errors?.img && !form?.controls?.url?.untouched">
+                        {{form?.controls?.url?.touched | json}}
+                        Url must start with http or https and end with jpg or sth. else...
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" [disabled]="form.invalid"> Create Account </button>
+                </div>
+                <div class=" alert alert-danger"
+                    *ngIf="form.invalid &&  form.touched && form.value?.passwordInfo?.password!= form.value?.passwordInfo?.repeatPassword">
+                    Error something is wrong with your form check above for more info!
+                </div>
+
+                <p class="text-center">Have an account? <a href="">Log In</a> </p>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+
+<!-- <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <select class="form-control">
+                        <option   value="Designer">Designer</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Accounting">Accounting</option>
+                    </select>
+                </div> -->
