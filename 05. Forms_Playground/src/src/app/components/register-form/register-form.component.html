@@ -94,7 +94,7 @@
                     <input ngModel appUrlValidator name="url" class="form-control" placeholder="Url">
                 </div>
                 <div class="validation-ids">
-                    <div class=" alert alert-danger" *ngIf="form?.control?.errors?.img && !form?.controls?.url?.untouched">
+                    <div class=" alert alert-danger" *ngIf="!form?.control?.errors?.img && !form.controls.url.untouched">
                         {{form?.controls?.url?.touched | json}}
                         Url must start with http or https and end with jpg or sth. else...
                     </div>
